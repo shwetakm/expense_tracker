@@ -12,10 +12,4 @@ def show_export_menu():
     user_choice = input("Enter your choice: ")
     return str.lower(user_choice)
 
-def add_new_expense_file():
-    print("Adding a new expense file...")
-    # Logic to add a new expense file goes here
 
-def load_existing_expense_file():
-    print("Loading an existing expense file...")
-    # Logic to load an existing expense file goes here

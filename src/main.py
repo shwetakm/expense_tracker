@@ -1,7 +1,16 @@
 import utilities.menu as utilities
+import expense_operations.file_operations as file_ops
 
 print("Welcome to the Expense Tracker Application")
+
+print("Available Expense Files:")
+file_ops.list_existing_expense_files()
+
+print("================================================================")
 print("New: Add New File | Load: Open existing File | Exit: Exit the App")
+print("================================================================")
+
+
 
 app_running_flag = True
 
@@ -9,9 +18,9 @@ while app_running_flag:
     main_menu = utilities.show_main_menu()
 
     if main_menu == "new":
-       utilities.add_new_expense_file()
+       file_ops.add_new_expense_file()
     elif main_menu == "load":
-         utilities.load_existing_expense_file()
+         file_ops.load_existing_expense_file()
     elif main_menu == "exit":
         print("Exiting the application.")
         app_running_flag = False    
