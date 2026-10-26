@@ -20,7 +20,10 @@ while app_running_flag:
     if main_menu == "new":
        file_ops.add_new_expense_file()
     elif main_menu == "view":
-         file_ops.view_expense_file()
+         print("Please enter the file name without extension:")
+         file_name = input().strip().lower()
+         file_name += ".json" 
+         file_ops.view_expense_file(file_name)
     elif main_menu == "exit":
         print("Exiting the application.")
         app_running_flag = False    
