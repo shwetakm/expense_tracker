@@ -7,7 +7,7 @@ print("Available Expense Files:")
 file_ops.list_existing_expense_files()
 
 print("================================================================")
-print("New: Add New File | Load: Open existing File | Exit: Exit the App")
+print("New: Add New File | View: View Expense File | Exit: Exit the App")
 print("================================================================")
 
 
@@ -19,8 +19,8 @@ while app_running_flag:
 
     if main_menu == "new":
        file_ops.add_new_expense_file()
-    elif main_menu == "load":
-         file_ops.load_existing_expense_file()
+    elif main_menu == "view":
+         file_ops.view_expense_file()
     elif main_menu == "exit":
         print("Exiting the application.")
         app_running_flag = False    
