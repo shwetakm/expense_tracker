@@ -1,23 +1,58 @@
-
 # Expense Tracker
 
-## Description
-A Python-based Expense Tracker application developed as part of my Python programming coursework. The application allows users to create, manage, filter expense records using JSON file formats and export to csv file.
+A command-line application for managing monthly expense records.
 
-## Project Structure
+## Project structure
 
-- `main.py` – Main entry point of the application.
-- `utilities/` – Contains menu functionality and expense-related classes.
-- `expense_operations/` – Contains functions for creating expense files, filtering expense records, and converting data between JSON and CSV formats.
+```text
+expense_tracker/
+├── main.py
+├── expense_operations/
+│   └── file_operations.py
+├── utilities/
+│   └── menu.py
+├── expense_files_json/
+│   └── (monthly expense data files, stored as JSON)
+└── expense_files_csv/
+    └── (CSV files exported from JSON expense records)
+```
 
-## Technologies Used
-- Python 3
-- JSON
-- CSV
-- Git
+## How the application works
 
-## How to Run
+1. `main.py` starts the application and displays the main menu.
+2. `utilities/menu.py` displays the main menu and the expense-file submenu.
+3. `expense_operations/file_operations.py` handles expense-file creation, viewing, adding entries, filtering, and CSV export.
+4. `expense_files_json/` stores expense records in JSON format.
+5. `expense_files_csv/` stores CSV files exported from the JSON records.
+
+## Run the application
+
+From the project root directory, run:
 
 ```bash
 python main.py
 ```
+
+## Main menu options
+
+- **New** — Create a new monthly expense file.
+- **View** — Open an existing expense file.
+- **Exit** — Close the application.
+
+## Expense-file submenu options
+
+- **Add** — Add a new expense entry.
+- **Export** — Export the current expense file to CSV.
+- **Filter** — Display expenses by category or date range.
+- **Return** — Return to the main menu.
+
+## Expense record fields
+
+Each expense record contains:
+
+- `category`
+- `amount`
+- `date`
+- `description`
+
+The application currently uses JSON files as its main data store and creates CSV files when the user selects the export option.

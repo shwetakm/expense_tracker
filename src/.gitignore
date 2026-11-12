@@ -3,4 +3,6 @@ __pycache__/
 *.pyc
 
 # Generated data folders
-expense_files/
+expense_files_json/
+expense_files_csv/
+

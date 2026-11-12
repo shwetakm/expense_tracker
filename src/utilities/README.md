@@ -1,10 +1,12 @@
+# utilities
 
-# Utilities
+This folder contains reusable helper functions used by the application.
 
-This folder contains supporting modules used by the Expense Tracker application.
+## `menu.py`
 
-## Functionality
+The module provides two menu functions:
 
-- Provides menu options and user navigation.
-- Contains classes used by the application.
-- Supports interaction between the main application and expense operations.
+- `show_main_menu()` — Displays the application's main menu and returns the user's choice in lowercase.
+- `show_expense_menu()` — Displays the submenu for an opened expense file and returns the user's choice in lowercase.
+
+These functions keep menu display and user-choice collection separate from the expense-file operations.
