@@ -1,8 +1,16 @@
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Generated data folders
+# VS Code temporary files
+tempCodeRunnerFile.py
+
+# Expense data files
 expense_files_json/
 expense_files_csv/
 
+# Python virtual environment
+venv/
+.venv/
