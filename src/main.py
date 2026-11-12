@@ -1,16 +1,16 @@
+# Main application for the Expense Tracker
+# first show all available expense files and provide menu options to add new expense file | view existing expense file | exit
+
 import utilities.menu as utilities
 import expense_operations.file_operations as file_ops
 
 def main():
 
-    print("Welcome to the Expense Tracker Application")
+    print("============================= Welcome to the Expense Tracker Application =============================\n")
 
     print("Available Expense Files:")
     file_ops.list_existing_expense_files()
-
-    print("================================================================")
-    print("New: Add New File | View: View Expense File | Exit: Exit the App")
-    print("================================================================")
+    print(" ")
 
     app_running_flag = True
 
@@ -28,8 +28,8 @@ def main():
             print("Exiting the application.")
             app_running_flag = False    
         else:
-            print("Invalid choice. Please try again.")
+            print("Error: Invalid choice. Please try again.")
 
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()

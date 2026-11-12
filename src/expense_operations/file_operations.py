@@ -1,3 +1,8 @@
+# File operations for the Expense Tracker
+# 1. user who has chosen 'Add New File' will enter name of a file and after successfully creating the file, redirect to view_expense_file function
+# 2. user who has chosen 'View Expense File' will enter name of a file and view its contents => user will get
+# submenu options to add new expense entry | export | filter | return
+#
 import json
 import os
 
@@ -7,12 +12,14 @@ EXPENSE_FOLDER = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "expense_files")
 )
 
+#show already available expense files
 def list_existing_expense_files():
         folder = EXPENSE_FOLDER
 
         for x in os.listdir(folder):
             if x.endswith(".json"):
                 print(x)
+
 
 #create a new file and redirect to view_expense_file function
 def add_new_expense_file():
@@ -25,12 +32,12 @@ def add_new_expense_file():
 
         try:
              with open(file_path, 'x') as f:
-                 print(file_path+" created successfully.")
-                 view_expense_file(file_name)       
+                 json.dump([], f)
+                 
+             print(file_path+" created successfully.")
+             view_expense_file(file_name)       
         except FileExistsError:
-            print("The expense file already exists. Please choose a different name.")
-    else:
-        print("error while creating the file. Please try again.")
+            print("Error: The expense file already exists. Please choose a different name.")
 
 
 #view function for new file and load existing file and show submenu 
@@ -40,26 +47,33 @@ def view_expense_file(file_name):
 
     try:
         with open(file_path, 'r') as f:
-            print(f.read())
-            user_choice = show_expense_menu() # new entry | export | filter
+            expenses = json.load(f)
+            for item in expenses:
+                print(f"{item['date']} | {item['category']} | ${item['amount']} | {item['description']}")
 
-            if user_choice == "add":
-                new_expense = add_new_expense_entry(file_path)
-                print("New expense entry added:", new_expense)
-            elif user_choice == "export":
-                print("Exporting the expense file to CSV...")
-            elif user_choice == "filter":
-                print("Filtering expenses...")
-            elif user_choice == "return":
-                print("Returning to the main menu...")
-            else:
-                print("Invalid choice. Returning to the main menu.")  
+            submenu_running_flag = True
+            
+            while submenu_running_flag:
+                user_choice = show_expense_menu() # new entry | export | filter
+
+                if user_choice == "add":
+                    add_new_expense_entry(file_path)
+                    print("New expense entry added successfully.")
+                elif user_choice == "export":
+                    print("Exporting the expense file to CSV...")
+                elif user_choice == "filter":
+                    filter_expenses(file_path)
+                elif user_choice == "return":
+                    submenu_running_flag = False
+                    print("Returning to the main menu...")
+                else:
+                    print("Error: Invalid choice. Please try again.")
 
     except FileNotFoundError:
-        print("The specified expense file was not found.")
-    ()
+        print("Error: The specified expense file was not found.")
 
 
+#add new expense entry to the file
 def add_new_expense_entry(file_path):
     print("Expense categories are: Food, Education, Utilities, Health")
     expense_category = input("Enter the expense category: ")
@@ -85,3 +99,41 @@ def add_new_expense_entry(file_path):
             json.dump(existing_json_string, f, indent=4)
     except Exception as e:
         print("Error occurred while writing new entry to the file")
+
+
+#filter expenses from the file
+def filter_expenses(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            expenses = json.load(f)
+        print("------------Filter and Display Expenses------------")
+        print("1. Food |  2. Education |  3. Utilities |  4. Health |  5. Date Range |  6. Return")
+        category_filter = input("Enter your choice ")
+        categories = {
+                        "1": "Food",
+                        "2": "Education",
+                        "3": "Utilities",
+                        "4": "Health"
+                    }
+
+        if category_filter in categories:
+                for item in expenses:
+                    if item["category"] == categories[category_filter]:
+                        print(f'{item["date"]} | ${item["amount"]} | {item["description"]}')
+
+        elif category_filter == "5":
+                start_date = input("Start date (YYYY-MM-DD): ")
+                end_date = input("End date (YYYY-MM-DD): ")
+
+                for item in expenses:
+                    if start_date <= item["date"] <= end_date:
+                        print(f'{item["date"]} | ${item["amount"]} | {item["description"]}')
+
+        elif category_filter == "6":
+                return
+
+        else:
+                print("Invalid choice.")
+
+    except Exception as e:
+            print("Error occurred while filtering expenses")
