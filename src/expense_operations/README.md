@@ -1,22 +1,23 @@
-# expense_operations
 
-This folder contains the functions that perform the main expense-file operations.
+# Expense Operations
 
-## `file_operations.py`
+This folder contains the functions used to manage expense files.
 
-The module is responsible for:
+## file_operations.py
 
-- Listing existing JSON expense files.
-- Creating a new expense file.
-- Opening and displaying an expense file.
-- Adding expense entries to a JSON file.
-- Filtering expenses by category or date range.
-- Exporting expense records to CSV.
+This file handles the main expense-related operations in the application.
 
-## Dependencies
+The functions in this file are used to:
 
-The module uses Python's built-in `csv`, `json`, and `os` modules. It also imports `show_expense_menu` from `utilities/menu.py`.
+- Display the available expense files.
+- Create a new expense file.
+- Open and view an existing expense file.
+- Add new expense entries.
+- Filter expenses by category or date range.
+- Export expense records to CSV.
 
-## Data folders
+This file also imports the Expense class from `utilities/expense.py` to create expense objects when a user adds a new expense.
 
-The module reads and writes JSON expense files in `expense_files_json/` and writes exported CSV files to `expense_files_csv/`.
+Before saving an expense to the JSON file, the Expense object is converted into a dictionary using the `to_dict()` method.
+
+The JSON files are stored in the `expense_files_json` folder, and exported CSV files are saved in the `expense_files_csv` folder.

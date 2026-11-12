@@ -1,12 +1,26 @@
-# utilities
 
-This folder contains reusable helper functions used by the application.
+# Utilities
 
-## `menu.py`
+This folder contains the menu functions and Expense class used in the application.
 
-The module provides two menu functions:
+## menu.py
 
-- `show_main_menu()` — Displays the application's main menu and returns the user's choice in lowercase.
-- `show_expense_menu()` — Displays the submenu for an opened expense file and returns the user's choice in lowercase.
+This file contains two functions:
 
-These functions keep menu display and user-choice collection separate from the expense-file operations.
+- `show_main_menu()` – Displays the main menu where the user can add a new expense file, view an existing file, or exit the application.
+- `show_expense_menu()` – Displays the submenu where the user can add expenses, export expenses to CSV, filter expenses, or return to the main menu.
+
+## expense.py
+
+This file contains the Expense class, which is used to create expense objects.
+
+The class has the following attributes:
+
+- `category` – Stores the expense category.
+- `amount` – Stores the expense amount.
+- `date` – Stores the expense date.
+- `description` – Stores the expense description.
+
+It also has a `to_dict()` method that converts the expense object into a dictionary. This is needed because the application stores expense details in JSON format.
+
+The Expense class helps keep the expense details together instead of creating a dictionary directly every time a new expense is added.

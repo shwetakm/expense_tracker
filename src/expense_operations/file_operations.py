@@ -1,13 +1,11 @@
 # File operations for the Expense Tracker
-# 1. user who has chosen 'Add New File' will enter name of a file and after successfully creating the file, redirect to view_expense_file function
-# 2. user who has chosen 'View Expense File' will enter name of a file and view its contents => user will get
-# submenu options to add new expense entry | export | filter | return
-#
+
 import csv
 import json
 import os
 
 from utilities.menu import show_expense_menu
+from utilities.expense import Expense
 
 EXPENSE_FOLDER = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "expense_files_json")
@@ -85,17 +83,21 @@ def add_new_expense_entry(file_path):
     expense_amount = float(input("Enter the expense amount: "))
     expense_date = input("Enter the expense date (YYYY-MM-DD): ")
     expense_description = input("Enter the expense description: ")
-    new_expense_entry = {
-        "category": expense_category,   
-        "amount": expense_amount,
-        "date": expense_date,
-        "description": expense_description
-    }
+
+    # Create an Expense object 
+    new_expense_entry = Expense(
+    expense_category,
+    expense_amount,
+    expense_date,
+    expense_description
+    )
+
     try: # get existing json entry, apend new entry
         with open(file_path, 'r') as f:
             existing_json_string = json.load(f)
         
-        existing_json_string.append(new_expense_entry)
+        existing_json_string.append(new_expense_entry.to_dict())
+
     except Exception as e:
         print("Error occurred while reading existring json entries")
 

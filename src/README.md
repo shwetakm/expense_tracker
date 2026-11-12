@@ -1,58 +1,64 @@
+
 # Expense Tracker
 
-A command-line application for managing monthly expense records.
+## About the Project
 
-## Project structure
+This is a Python-based Expense Tracker application that helps users manage their monthly expenses. Users can create expense files, add new expenses, view existing expenses, filter expenses, and export expense details to CSV files.
+
+The application uses JSON files to store expense records.
+
+## Project Structure
 
 ```text
-expense_tracker/
+Expense_Tracker/
+│
+├── README.md
 ├── main.py
+│
 ├── expense_operations/
+│   ├── README.md
 │   └── file_operations.py
+│
 ├── utilities/
-│   └── menu.py
+│   ├── README.md
+│   ├── menu.py
+│   └── expense.py
+│
 ├── expense_files_json/
-│   └── (monthly expense data files, stored as JSON)
+│   ├── README.md
+│   └── JSON expense files
+│
 └── expense_files_csv/
-    └── (CSV files exported from JSON expense records)
+    ├── README.md
+    └── CSV exported files
 ```
 
-## How the application works
+## Files and Folders
 
-1. `main.py` starts the application and displays the main menu.
-2. `utilities/menu.py` displays the main menu and the expense-file submenu.
-3. `expense_operations/file_operations.py` handles expense-file creation, viewing, adding entries, filtering, and CSV export.
-4. `expense_files_json/` stores expense records in JSON format.
-5. `expense_files_csv/` stores CSV files exported from the JSON records.
+-  main.py:  Starts the application and displays the main menu.
+-  expense_operations:  Contains functions to create, view, add, filter, and export expense records.
+-  utilities:  Contains the menu functions and Expense class.
+-  expense_files_json:  Stores expense records in JSON format.
+-  expense_files_csv:  Stores exported expense records in CSV format.
 
-## Run the application
+## Features
 
-From the project root directory, run:
+1. Create a new expense file.
+2. View existing expense files.
+3. Add new expense entries.
+4. Filter expenses by category or date range.
+5. Export expenses to CSV.
+
+## Object-Oriented Programming
+
+An Expense class is used to represent individual expense entries. It stores the expense category, amount, date, and description.
+
+The `to_dict()` method converts an Expense object into a dictionary before saving it to the JSON file.
+
+## How to Run
+
+Run the following command from the project root directory:
 
 ```bash
 python main.py
 ```
-
-## Main menu options
-
-- **New** — Create a new monthly expense file.
-- **View** — Open an existing expense file.
-- **Exit** — Close the application.
-
-## Expense-file submenu options
-
-- **Add** — Add a new expense entry.
-- **Export** — Export the current expense file to CSV.
-- **Filter** — Display expenses by category or date range.
-- **Return** — Return to the main menu.
-
-## Expense record fields
-
-Each expense record contains:
-
-- `category`
-- `amount`
-- `date`
-- `description`
-
-The application currently uses JSON files as its main data store and creates CSV files when the user selects the export option.
