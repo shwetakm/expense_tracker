@@ -3,13 +3,18 @@
 # 2. user who has chosen 'View Expense File' will enter name of a file and view its contents => user will get
 # submenu options to add new expense entry | export | filter | return
 #
+import csv
 import json
 import os
 
 from utilities.menu import show_expense_menu
 
 EXPENSE_FOLDER = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "expense_files")
+    os.path.join(os.path.dirname(__file__), "..", "expense_files_json")
+)
+
+CSV_FOLDER = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "expense_files_csv")
 )
 
 #show already available expense files
@@ -42,10 +47,10 @@ def add_new_expense_file():
 
 #view function for new file and load existing file and show submenu 
 def view_expense_file(file_name):
-    print("Viewing the expense file:", file_name)
-    file_path = os.path.join(EXPENSE_FOLDER, file_name)
 
     try:
+        print("Viewing the expense file:", file_name)
+        file_path = os.path.join(EXPENSE_FOLDER, file_name)
         with open(file_path, 'r') as f:
             expenses = json.load(f)
             for item in expenses:
@@ -60,7 +65,7 @@ def view_expense_file(file_name):
                     add_new_expense_entry(file_path)
                     print("New expense entry added successfully.")
                 elif user_choice == "export":
-                    print("Exporting the expense file to CSV...")
+                    export_expenses_to_csv(file_path)
                 elif user_choice == "filter":
                     filter_expenses(file_path)
                 elif user_choice == "return":
@@ -115,11 +120,12 @@ def filter_expenses(file_path):
                         "3": "Utilities",
                         "4": "Health"
                     }
-
+        
         if category_filter in categories:
+                print("Category | Date | Amount | Description")
                 for item in expenses:
                     if item["category"] == categories[category_filter]:
-                        print(f'{item["date"]} | ${item["amount"]} | {item["description"]}')
+                        print(f'{item["category"]} | {item["date"]} | ${item["amount"]} | {item["description"]}')
 
         elif category_filter == "5":
                 start_date = input("Start date (YYYY-MM-DD): ")
@@ -137,3 +143,23 @@ def filter_expenses(file_path):
 
     except Exception as e:
             print("Error occurred while filtering expenses")
+
+
+def export_expenses_to_csv(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            expenses = json.load(f)
+
+        file_name = os.path.basename(file_path).replace(".json", ".csv")
+        csv_file_path = os.path.join(CSV_FOLDER, file_name)
+
+        with open(csv_file_path, 'w', newline='') as csvfile:
+            fieldnames = ["category", "amount", "date", "description"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(expenses)
+
+        print(f"Expenses exported successfully to {csv_file_path}")
+
+    except Exception as e:
+        print("Error occurred while exporting expenses to CSV")
