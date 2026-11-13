@@ -1,4 +1,3 @@
-
 # Expense Tracker
 
 ## About the Project
@@ -35,11 +34,11 @@ Expense_Tracker/
 
 ## Files and Folders
 
--  main.py:  Starts the application and displays the main menu.
--  expense_operations:  Contains functions to create, view, add, filter, and export expense records.
--  utilities:  Contains the menu functions and Expense class.
--  expense_files_json:  Stores expense records in JSON format.
--  expense_files_csv:  Stores exported expense records in CSV format.
+- main.py: Starts the application and displays the main menu using the ExpenseTrackerApp class.
+- expense_operations: Contains the ExpenseOpsManager class, which handles creating, viewing, adding, filtering, and exporting expense records.
+- utilities: Contains the menu functions and Expense class.
+- expense_files_json: Stores expense records in JSON format.
+- expense_files_csv: Stores exported expense records in CSV format.
 
 ## Features
 
@@ -51,7 +50,11 @@ Expense_Tracker/
 
 ## Object-Oriented Programming
 
-An Expense class is used to represent individual expense entries. It stores the expense category, amount, date, and description.
+The application uses three classes:
+
+- ExpenseTrackerApp: Controls the main application and menu.
+- ExpenseOpsManager: Handles expense-related operations and file handling.
+- Expense: Represents an individual expense and stores its category, amount, date, and description.
 
 The `to_dict()` method converts an Expense object into a dictionary before saving it to the JSON file.
 
