@@ -1,0 +1,25 @@
+[
+    {
+        "category": "Food",
+        "amount": 125.50,
+        "date": "2026-10-02",
+        "description": "Weekly grocery shopping"
+    },
+    {
+        "category": "Utilities",
+        "amount": 85.75,
+        "date": "2026-10-05",
+        "description": "Electricity bill"
+    },
+    {
+        "category": "Education",
+        "amount": 45.00,
+        "date": "2026-10-10",
+        "description": "Programming course materials"
+    },
+    {
+        "category": "Health",
+        "amount": 32.50,
+        "date": "2026-10-14",
+        "description": "Pharmacy expenses"
+    }]
