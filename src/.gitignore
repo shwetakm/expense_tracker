@@ -8,8 +8,8 @@ __pycache__/
 tempCodeRunnerFile.py
 
 # Expense data files
-#expense_files_json/
-#expense_files_csv/
+expense_files_json/
+expense_files_csv/
 
 # Python virtual environment
 venv/
