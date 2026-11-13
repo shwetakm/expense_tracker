@@ -1,4 +1,3 @@
-
 # Expense Operations
 
 This folder contains the functions used to manage expense files.
@@ -7,7 +6,7 @@ This folder contains the functions used to manage expense files.
 
 This file handles the main expense-related operations in the application.
 
-The functions in this file are used to:
+The methods in the ExpenseOpsManager class are used to:
 
 - Display the available expense files.
 - Create a new expense file.
