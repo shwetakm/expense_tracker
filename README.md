@@ -11,25 +11,28 @@ The application uses JSON files to store expense records.
 ```text
 Expense_Tracker/
 │
-├── README.md
-├── main.py
+├── README.md                 
+├── .gitignore                
 │
-├── expense_operations/
-│   ├── README.md
-│   └── file_operations.py
-│
-├── utilities/
-│   ├── README.md
-│   ├── menu.py
-│   └── expense.py
-│
-├── expense_files_json/
-│   ├── README.md
-│   └── JSON expense files
-│
-└── expense_files_csv/
-    ├── README.md
-    └── CSV exported files
+└── src/
+    ├── main.py
+    │
+    ├── expense_operations/
+    │   ├── README.md
+    │   └── file_operations.py
+    │
+    ├── utilities/
+    │   ├── README.md
+    │   ├── menu.py
+    │   └── expense.py
+    │
+    ├── expense_files_json/
+    │   ├── README.md
+    │   └── JSON expense files
+    │
+    └── expense_files_csv/
+        ├── README.md
+        └── CSV exported files
 ```
 
 ## Files and Folders
